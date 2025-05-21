@@ -51,11 +51,11 @@ const login = async (req,res)=>{
                 sid :sid
             }
         },"secret")
-        res.setHeader("Authorization",`Bearer${token}`)
+        res.setHeader("Authorization",`Bearer ${token}`)
         return res.status(201).json({
             message:"login successful",
             status:201,
-            token:`Bearer${token}`
+            token:`Bearer ${token}`
         })
     } catch (error) {
         return res.json({
