@@ -67,6 +67,13 @@ const login = async (req,res)=>{
 }
 
 const updatepass = async(req,res)=>{
+    let {password ,sid} = req.body
+
+    try {
+         
+    } catch (error) {
+        
+    }
 
 }
 
