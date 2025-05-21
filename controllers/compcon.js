@@ -25,14 +25,10 @@ const postcomplaint=async (req,res)=>{//for students to post comp
             message:error.message
         })
     }
-
-
-
-
 }
 
 const getcomplaints = async (req,res)=>{ // for admin to see all complaints
-    console.log(req.user)
+    
     return res.json({
         message:"welcome to protected route",
         decoded : req.user

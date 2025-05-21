@@ -77,9 +77,51 @@ const updatepass = async(req,res)=>{
 
 }
 
+const adminlog = async (req, res) => {
+    const { adminid, adminpassword } = req.body;
+
+    if (!adminid || !adminpassword) {
+        return res.status(400).json({ message: "Missing credentials" });
+    }
+
+    try {
+        const passQuery = "SELECT password FROM admin WHERE adminid = ?";
+        const [rows] = await pool.execute(passQuery, [adminid]);
+
+        if (rows.length === 0) {
+            return res.status(401).json({ message: "Invalid credentials" });
+        }
+
+        const storedPassword = rows[0].password;
+
+        
+        const isMatch = (storedPassword === adminpassword); 
+
+        if (!isMatch) {
+            return res.status(401).json({ message: "Invalid credentials" });
+        }
+
+        const token = jwt.sign(
+            { adminid, role: "admin" },
+            "secret",
+            { expiresIn: "1h" }
+        );
+
+        return res.status(200).json({
+            message: "Login successful",
+            token:`Bearer ${token}`
+        });
+
+    } catch (error) {
+        console.error("Login error:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+};
+
 
 module.exports ={
     signup,
     login,
-    updatepass
+    updatepass,
+    adminlog
 }
