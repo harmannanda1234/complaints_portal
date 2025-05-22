@@ -66,16 +66,6 @@ const login = async (req,res)=>{
 
 }
 
-const updatepass = async(req,res)=>{
-    let {password ,sid} = req.body
-
-    try {
-         
-    } catch (error) {
-        
-    }
-
-}
 
 const adminlog = async (req, res) => {
     const { adminid, adminpassword } = req.body;
@@ -122,6 +112,6 @@ const adminlog = async (req, res) => {
 module.exports ={
     signup,
     login,
-    updatepass,
+    // updatepass,
     adminlog
 }
