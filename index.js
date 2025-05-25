@@ -4,7 +4,7 @@ const authToken = require("./middlewares/token")
 const crouter = require("./routes/complaints")
 const app = express()
 require('dotenv').config()
-const Port = process.env.Port
+const Port =5000||process.env.Port
 
 
 //middlewares
